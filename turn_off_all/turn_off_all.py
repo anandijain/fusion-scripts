@@ -7,15 +7,13 @@ def run(context):
         ui = app.userInterface
         design = app.activeProduct
 
-        # Get all components in the design
         rootComp = design.rootComponent
         allOccs = rootComp.allOccurrences
-
-        # Iterate through all occurrences and hide them
-        for occ in allOccs:
-            occ.isVisible = False
-
-        ui.messageBox('All components have been hidden.')
+        msg = ""
+        for o in allOccs:
+            msg += f'{o.component.name}\n'
+            o.isLightBulbOn = False
+        ui.messageBox(msg)
     
     except:
         if ui:

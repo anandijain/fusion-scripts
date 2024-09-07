@@ -1,23 +1,20 @@
-#Author-
-#Description-
-
 import adsk.core, adsk.fusion, adsk.cam, traceback
 
 def run(context):
     ui = None
     try:
         app = adsk.core.Application.get()
-        docs = app.documents
-        ui  = app.userInterface
+        ui = app.userInterface
         design = app.activeProduct
 
-        # Start with the root component
-        root_comp = design.rootComponent
+        rootComp = design.rootComponent
+        allOccs = rootComp.allOccurrences
         msg = ""
-        for doc in docs:
-            msg += doc.name + "\n" 
+        for o in allOccs:
+            msg += f'{o.component.name}\n'
+            o.isLightBulbOn = True
         ui.messageBox(msg)
-
+    
     except:
         if ui:
             ui.messageBox('Failed:\n{}'.format(traceback.format_exc()))

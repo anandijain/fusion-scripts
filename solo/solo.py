@@ -20,11 +20,10 @@ def run(context):
         # Turn off the visibility of all other components
         for occurrence in rootComp.allOccurrences:
             if occurrence != selectedComp:
-                occurrence.isVisible = False
+                occurrence.isLightBulbOn = False
+            else:
+                occurrence.isLightBulbOn = True
         
-        # Ensure the selected component is visible
-        selectedComp.isVisible = True
-
     except:
         if ui:
             ui.messageBox('Failed:\n{}'.format(traceback.format_exc()))
