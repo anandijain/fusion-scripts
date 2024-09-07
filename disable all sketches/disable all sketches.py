@@ -1,6 +1,6 @@
 import adsk.core, adsk.fusion, adsk.cam, traceback
 
-def turn_off_sketch_visibility(component):
+def turn_off_sketch_visibility(component: adsk.fusion.Component):
     # Iterate through all sketches in the component and turn off visibility
     for sketch in component.sketches:
         sketch.isVisible = False
@@ -18,6 +18,7 @@ def run(context):
 
         # Start with the root component
         root_comp = design.rootComponent
+        # root_comp.isSketchFolderLightBulbOn = False
         turn_off_sketch_visibility(root_comp)
 
         ui.messageBox('All sketches are turned off.')
